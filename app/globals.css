@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Design tokens fra Figma-filen "Dynamite Eksamen - 3. sem" */
+@theme {
+  --color-text-primary: #545454;
+  --color-paper: #f6f4ed;
+  --color-surface-card: #fffdf7;
+  --color-border-subtle: rgba(84, 84, 84, 0.17);
+  --color-navbar: #f6efc6;
+  --color-glass: rgba(15, 15, 15, 0.25);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-chart-2: #badc71;
+  --color-chart-3: #d6df70;
+  --color-chart-4: #f2d96b;
+  --color-chart-5: #efb970;
+  --color-chart-6: #ed987c;
+  --color-chart-7: #d87d82;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  font-family: var(--font-sans);
+}
+
+/* Skjul scrollbaren inde i telefonrammen */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
