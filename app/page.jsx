@@ -1,6 +1,5 @@
 import HighestUvBox from "@/components/HighestUvBox";
 import Navbar from "@/components/Navbar";
-import OrbBackground from "@/components/OrbBackground";
 import RiskInformationBox from "@/components/RiskInformationBox";
 import Screen from "@/components/Screen";
 import SunLogo from "@/components/SunLogo";
@@ -29,7 +28,7 @@ const week = [
 export default function Forside() {
   return (
     <>
-      <Screen minHeight={1599} bg="bg-[#fefefe]" background={<OrbBackground />}>
+      <Screen minHeight={1599} bg="bg-[#fefefe]">
         <div className="px-5 text-text-primary">
           {/* front-page-title */}
           <h1 className="ml-[-1px] mt-[67px] h-[37px] w-[299px] text-center text-[36px] font-bold leading-normal">

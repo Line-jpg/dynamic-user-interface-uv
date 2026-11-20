@@ -1,21 +1,31 @@
 import Svg from "./Svg";
 
+// Bogstaverne i "SKRU NED / FOR SOLEN" placeret langs cirklen som i Figma.
+// [bogstav, left, top (centrum), boksbredde, bokshøjde, rotation]
+// Bogstaverne i "SKRU NED / FOR SOLEN" placeret langs cirklen som i Figma ("Hover orbit / Preview").
+// [bogstav, left, top (centrum), boksbredde, bokshøjde, rotation]
 const letters = [
-  ["S", 26.7, 50.79, 18.741, 19.575, -38.4],
-  ["K", 38.28, 43.92, 17.248, 19.499, -26.35],
-  ["R", 51.6, 39.44, 14.891, 18.467, -14.19],
-  ["U", 66.03, 37.59, 12.355, 16.561, -1.78],
-  ["N", 84.13, 40.31, 16.366, 19.058, 17.19],
-  ["E", 95.71, 45.39, 16.861, 19.141, 29.3],
-  ["D", 104.74, 52.96, 20.085, 20.402, 41.55],
-  ["F", 29.25, 99.27, 19.989, 18.904, 54.84],
-  ["O", 35.89, 107.68, 22.041, 22.158, 40.45],
-  ["R", 47.56, 114.27, 19.22, 20.45, 24.94],
-  ["S", 67.99, 118.44, 13.906, 16.558, 1.55],
-  ["O", 77.74, 117.14, 18.591, 19.357, -13.85],
-  ["L", 88.66, 113.1, 17.726, 19.675, -28.26],
-  ["E", 95.81, 107.3, 20.182, 20.517, -41.18],
-  ["N", 102.75, 98.69, 21.563, 21.121, -55.74],
+  ["S", 21.41, 52.03, 19.489, 17.328, -62.35],
+  ["K", 30.94, 39.4, 19.328, 19.449, -44.01],
+  ["R", 45.06, 30.35, 17.151, 19.474, -25.57],
+  ["U", 62.34, 25.84, 13.68, 17.482, -6.75],
+  ["N", 86.71, 29.98, 17.76, 19.773, 24.58],
+  ["E", 99.46, 38.77, 18.536, 18.837, 42.95],
+  ["D", 108.42, 51.4, 20.19, 18.694, 61.53],
+  ["F", 21.4, 98.26, 19.803, 17.95, 61.98],
+  ["O", 28.3, 109.39, 22.179, 22.153, 46],
+  ["R", 41.19, 118.34, 19.789, 20.785, 28.89],
+  ["S", 65.3, 124.43, 14.292, 16.874, 2.96],
+  ["O", 77.69, 123.02, 18.63, 19.392, -14.04],
+  ["L", 90.65, 117.93, 17.965, 19.733, -29.85],
+  ["E", 99.33, 110.49, 20.358, 20.428, -44.2],
+  ["N", 107.39, 99.49, 21.262, 20.632, -60.35],
+];
+
+// De to runde prikker: [asset, left, top]. Hver prik er 11,055 px, og SVG'en går 20,35 % ud over boksen.
+const dots = [
+  ["logo-dot-round-left", 19.965, 69.465],
+  ["logo-dot-round-right", 118.98, 69.465],
 ];
 
 /** "Skru ned for solen"-logoet. Teksten og prikkerne roterer, når man holder musen over. */
@@ -45,10 +55,10 @@ export default function SunLogo({ className = "" }) {
             </span>
           </span>
         ))}
-        {[30, 114].map((left) => (
-          <span key={left} aria-hidden className="absolute top-[73.875px] h-[8.76px] w-[11.055px]" style={{ left }}>
-            <span className="absolute inset-[-25.7%_-20.35%]">
-              <Svg name="logo-dot" className="block size-full max-w-none" />
+        {dots.map(([name, left, top]) => (
+          <span key={name} aria-hidden className="absolute size-[11.055px]" style={{ left, top }}>
+            <span className="absolute inset-[-20.35%]">
+              <Svg name={name} className="block size-full max-w-none" />
             </span>
           </span>
         ))}
