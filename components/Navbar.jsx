@@ -5,7 +5,7 @@ import Svg from "./Svg";
 
 const items = [
   { href: "/", label: "UV-indeks", icon: "nav-indeks" },
-  { href: "/solsikkerhed", label: "Solsikkerhed", icon: "nav-solhat" },
+  { href: "/sunsafety", label: "Solsikkerhed", icon: "nav-solhat" },
   { href: "/indstillinger", label: "Indstillinger", icon: "nav-settings" },
   { href: "/information", label: "Information", icon: "nav-info" },
 ];
@@ -56,6 +56,7 @@ export default function Navbar() {
             key={item.href}
             href={item.href}
             aria-label={item.label}
+            title={item.label}
             aria-current={active ? "page" : undefined}
             className="relative shrink-0"
           >
