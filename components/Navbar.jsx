@@ -7,7 +7,7 @@ const items = [
   { href: "/", label: "UV-indeks", icon: "nav-indeks" },
   { href: "/sunsafety", label: "Solsikkerhed", icon: "nav-solhat" },
   { href: "/settings", label: "Indstillinger", icon: "nav-settings" },
-  { href: "/information", label: "Information", icon: "nav-info" },
+  { href: "/about", label: "Information", icon: "nav-info" },
 ];
 
 function Icon({ icon, active }) {
