@@ -1,3 +1,4 @@
+import Clock from "@/components/Clock";
 import HighestUvBox from "@/components/HighestUvBox";
 import Navbar from "@/components/Navbar";
 import RiskInformationBox from "@/components/RiskInformationBox";
@@ -37,8 +38,10 @@ export default function Forside() {
           {/* front-page-information */}
           <p className="mt-4 h-[38px] w-[253px] text-base leading-normal">Sådan kommer din dag i solen, til at se ud.</p>
 
-          {/* clock-box: tomt panel i Figma */}
-          <div className="mt-6 h-[399px] rounded-[24px] bg-glass" />
+          {/* clock-box med det interaktive ur centreret */}
+          <div className="mt-6 flex h-[399px] items-center justify-center rounded-[24px] bg-glass">
+            <Clock />
+          </div>
 
           <div className="mt-5 flex items-start gap-[14px]">
             <HighestUvBox uv={today.uv} level={today.level} peakTime={today.peakTime} />

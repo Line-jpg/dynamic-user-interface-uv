@@ -1,0 +1,82 @@
+/* Styling fra Figma-urets index.css. Ingen baggrund: clock-box-panelet ses igennem. */
+
+.clock {
+  position: relative;
+  width: 349px;
+  aspect-ratio: 349 / 369;
+  background: transparent;
+}
+
+.face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+
+.tick {
+  stroke: #ffffff;
+  stroke-linecap: round;
+}
+
+.numbers,
+.data {
+  fill: #ffffff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.numbers {
+  font-size: 24px;
+}
+
+.data rect {
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 1.215px;
+}
+
+.small {
+  font-size: 9.72px;
+}
+
+.value {
+  font-size: 77.76px;
+}
+
+.handle {
+  fill: #181818;
+  stroke: #ffffff;
+  stroke-width: 1.8px;
+  cursor: grab;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 35%));
+  transition:
+    r 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    fill 180ms ease;
+  outline: none;
+}
+
+.handle:hover,
+.handle:focus-visible {
+  fill: #292929;
+  stroke-width: 2.5px;
+}
+
+.handle:focus-visible {
+  filter: drop-shadow(0 0 5px rgb(255 255 255 / 65%));
+}
+
+.handleDragging {
+  r: 11px;
+  cursor: grabbing;
+  fill: #242424;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .handle {
+    transition: none;
+  }
+}
