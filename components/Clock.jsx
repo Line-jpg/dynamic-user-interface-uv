@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { uvAtMinutes, uvLevel } from "@/lib/uv";
 import styles from "./Clock.module.css";
 
 // Interaktivt 24-timers ur fra Figma ("Loop Clock Every 24 Hours").
 // Træk håndtaget rundt for at vælge et tidspunkt. To omgange = et døgn.
+// Midten viser UV-indekset fra OpenUV (via /api/uv) på det valgte tidspunkt.
 
 const VIEW_WIDTH = 349;
 const VIEW_HEIGHT = 369;
@@ -42,6 +44,22 @@ function minutesFromAngle(angle) {
   return Math.min(Math.round((angle / FULL_DAY_ANGLE) * MINUTES_PER_DAY), MINUTES_PER_DAY - 1);
 }
 
+function angleFromMinutes(minutes) {
+  return (minutes / MINUTES_PER_DAY) * FULL_DAY_ANGLE;
+}
+
+/** Klokkeslættet lige nu i dansk tid, som minutter efter midnat. */
+function nowInDenmarkMinutes() {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Copenhagen",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  const get = (type) => Number(parts.find((p) => p.type === type).value);
+  return get("hour") * 60 + get("minute");
+}
+
 function formatTime(angle) {
   const totalMinutes = minutesFromAngle(angle);
   const hours = Math.floor(totalMinutes / 60);
@@ -61,6 +79,39 @@ export default function Clock() {
   const [isDragging, setIsDragging] = useState(false);
   const [waveStrength, setWaveStrength] = useState(0);
   const [waveOrigin, setWaveOrigin] = useState(() => pointOnCircle(0, HANDLE_RADIUS));
+  const [uvData, setUvData] = useState(null);
+  const [uvError, setUvError] = useState(null);
+
+  // Hent dagens UV-prognose fra vores egen API-route og stil uret på klokken lige nu.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/uv")
+      .then(async (res) => {
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.error ?? "Kunne ikke hente UV-data.");
+        return body;
+      })
+      .then((data) => {
+        if (cancelled) return;
+        setUvData(data);
+        const now = angleFromMinutes(nowInDenmarkMinutes());
+        totalAngleRef.current = now;
+        setAngle(now);
+        setWaveOrigin(pointOnCircle(now % (Math.PI * 2), HANDLE_RADIUS));
+      })
+      .catch((error) => {
+        if (!cancelled) setUvError(error.message);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const uv = uvData ? uvAtMinutes(uvData.points, minutesFromAngle(angle)) : null;
+  // WHO's skala bruger det afrundede UV-indeks, så tal og risikotekst altid passer sammen.
+  const roundedUv = uv === null ? null : Math.round(uv);
+  const uvValue = roundedUv ?? "–";
+  const riskText = uvError ? "Ingen data" : roundedUv === null ? "Henter…" : `${uvLevel(roundedUv)} Risiko`;
 
   const handle = useMemo(() => pointOnCircle(angle % (Math.PI * 2), HANDLE_RADIUS), [angle]);
 
@@ -207,7 +258,7 @@ export default function Clock() {
         className={styles.face}
         viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
         role="group"
-        aria-label={`Valgt tidspunkt ${formatTime(angle)}`}
+        aria-label={`Valgt tidspunkt ${formatTime(angle)}. UV-indeks ${uvValue}, ${riskText}`}
       >
         <g aria-hidden="true">
           {ticks.map((tick) => (
@@ -243,10 +294,10 @@ export default function Clock() {
             UV-INDEKS
           </text>
           <text className={styles.value} x={CENTER_X} y="193" textAnchor="middle">
-            4
+            {uvValue}
           </text>
           <text className={styles.small} x={CENTER_X} y="220" textAnchor="middle">
-            Moderat Risiko
+            {riskText}
           </text>
           <rect x="152.5" y="229.5" width="44.5" height="27" rx="9.7" />
           <text className={styles.small} x={CENTER_X} y="247" textAnchor="middle">
@@ -265,7 +316,7 @@ export default function Clock() {
           aria-valuemin={0}
           aria-valuemax={MINUTES_PER_DAY - 1}
           aria-valuenow={minutesFromAngle(angle)}
-          aria-valuetext={formatTime(angle)}
+          aria-valuetext={`${formatTime(angle)}, UV ${uvValue}`}
           onPointerDown={beginDrag}
           onPointerMove={moveDrag}
           onPointerUp={endDrag}
