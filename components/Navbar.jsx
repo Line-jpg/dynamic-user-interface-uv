@@ -6,7 +6,7 @@ import Svg from "./Svg";
 const items = [
   { href: "/", label: "UV-indeks", icon: "nav-indeks" },
   { href: "/sunsafety", label: "Solsikkerhed", icon: "nav-solhat" },
-  { href: "/indstillinger", label: "Indstillinger", icon: "nav-settings" },
+  { href: "/settings", label: "Indstillinger", icon: "nav-settings" },
   { href: "/information", label: "Information", icon: "nav-info" },
 ];
 
