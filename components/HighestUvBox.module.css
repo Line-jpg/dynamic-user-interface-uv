@@ -1,0 +1,60 @@
+/* "Højeste UV i dag" (174 × 174 px) */
+.box {
+  display: flex;
+  width: 174px;
+  height: 174px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 11px 15px;
+}
+
+/* Den gule ring med tallet og niveauet */
+.uvRing {
+  position: relative;
+  display: flex;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 13px;
+  color: var(--color-paper);
+}
+
+.uvValue {
+  position: relative;
+  display: flex;
+  width: 86px;
+  height: 54px;
+  margin-bottom: -8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 90.228px;
+  letter-spacing: -5.52px;
+}
+
+.uvLevel {
+  position: relative;
+  display: flex;
+  width: 56px;
+  height: 12px;
+  align-items: center;
+  justify-content: center;
+  font-size: 8.203px;
+  font-weight: 700;
+  line-height: 11.278px;
+  letter-spacing: 2px;
+}
+
+/* "UV'en bliver højest X i dag, klokken Y" */
+.peakText {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-white);
+}

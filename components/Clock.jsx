@@ -222,7 +222,7 @@ export default function Clock({ uvData = null, uvError = null, initialMinutes = 
     <section className={styles.clock} aria-label="Interaktivt 24-timers ur">
       <svg
         ref={svgRef}
-        className={styles.face}
+        className={styles.clockFace}
         viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
         role="group"
         aria-label={`Valgt tidspunkt ${formatTime(angle)}. UV-indeks ${uvValue}, ${riskText}`}
@@ -241,7 +241,7 @@ export default function Clock({ uvData = null, uvError = null, initialMinutes = 
           ))}
         </g>
 
-        <g className={styles.numbers} aria-hidden="true">
+        <g className={styles.hourNumbers} aria-hidden="true">
           <text x={CENTER_X} y="23" textAnchor="middle">
             12
           </text>
@@ -256,24 +256,24 @@ export default function Clock({ uvData = null, uvError = null, initialMinutes = 
           </text>
         </g>
 
-        <g className={styles.data} aria-hidden="true">
-          <text className={styles.small} x={CENTER_X} y="118" textAnchor="middle">
+        <g className={styles.uvInfo} aria-hidden="true">
+          <text className={styles.infoLabel} x={CENTER_X} y="118" textAnchor="middle">
             UV-INDEKS
           </text>
-          <text className={styles.value} x={CENTER_X} y="193" textAnchor="middle">
+          <text className={styles.uvValue} x={CENTER_X} y="193" textAnchor="middle">
             {uvValue}
           </text>
-          <text className={styles.small} x={CENTER_X} y="220" textAnchor="middle">
+          <text className={styles.infoLabel} x={CENTER_X} y="220" textAnchor="middle">
             {riskText}
           </text>
           <rect x="152.5" y="229.5" width="44.5" height="27" rx="9.7" />
-          <text className={styles.small} x={CENTER_X} y="247" textAnchor="middle">
+          <text className={styles.infoLabel} x={CENTER_X} y="247" textAnchor="middle">
             {formatTime(angle)}
           </text>
         </g>
 
         <circle
-          className={`${styles.handle} ${isDragging ? styles.handleDragging : ""}`}
+          className={`${styles.timeHandle} ${isDragging ? styles.timeHandleDragging : ""}`}
           cx={handle.x}
           cy={handle.y}
           r="9"

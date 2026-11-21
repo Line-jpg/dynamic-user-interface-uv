@@ -1,4 +1,5 @@
 import Svg from "./Svg";
+import styles from "./UvConditions.module.css";
 
 const levels = [
   { hat: "hat-lav", title: "Lav", lines: ["Minimal beskyttelse som solbriller er ofte nok"] },
@@ -23,17 +24,17 @@ const levels = [
 export default function UvConditions() {
   return (
     <section>
-      <h2 className="ml-[22px] mt-[58.94px] h-[66px] w-[356px] text-[22px] font-bold leading-[1.5] tracking-[-0.242px] text-text-primary">
+      <h2 className={styles.title}>
         Hvad betyder de forskellige UV forhold?
       </h2>
-      <ul className="ml-[21px] mt-[6.06px] w-[360px]">
+      <ul className={styles.levelList}>
         {levels.map((level) => (
-          <li key={level.title} className="flex h-[100px] items-center gap-[12.15px]">
-            <span className="relative h-[60.75px] w-[90.72px] shrink-0">
+          <li key={level.title} className={styles.level}>
+            <span className={styles.levelHat}>
               <Svg name={level.hat} />
             </span>
-            <div className="w-[257px] text-[12.96px] leading-[1.5] tracking-[-0.1426px] text-[#1e1e1e]">
-              <p className="font-bold">{level.title}</p>
+            <div className={styles.levelText}>
+              <p className={styles.levelName}>{level.title}</p>
               {level.lines.map((line) => (
                 <p key={line}>{line}</p>
               ))}

@@ -1,0 +1,108 @@
+/* ---- "skin-type": kortet med den valgte hudtype ---- */
+
+.skinTypeCard {
+  width: 360px;
+  margin: 24.6px 0 0 22px;
+  padding: 26px 27px;
+  border: 3px solid var(--color-white);
+  border-radius: 25px;
+  background: rgba(15, 15, 15, 0.2);
+  color: var(--color-white);
+}
+
+.skinTypeContent {
+  display: flex;
+  height: 90px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.skinTypeHeader {
+  position: relative;
+  width: 143px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.skinTypeLabel {
+  position: absolute;
+  top: 10.5px;
+  left: 0;
+  height: 19px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+}
+
+/* Den runde knap med hudtypens tal (farven sættes pr. hudtype). Åbner oversigten. */
+.skinTypeButton {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  display: flex;
+  width: 43px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid var(--color-white);
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  color: #693d3d;
+}
+
+.skinTypeDescription {
+  width: 100%;
+  height: 39px;
+  font-size: 14px;
+  line-height: 19.2px;
+}
+
+/* ---- "personal-tips": tips til den valgte hudtype ---- */
+
+.tipsCard {
+  width: 360px;
+  height: 429px;
+  margin: 20px 0 0 21px;
+  padding: 40px 20px;
+  font-size: 14px;
+  line-height: 19.2px;
+}
+
+.tipsList {
+  width: 316px;
+  list-style: disc;
+}
+
+/* Hvert tip har sin egen højde og afstand, så linjerne står som i Figma */
+.tip {
+  margin-inline-start: 21px;
+}
+
+.tipAvoidMidday {
+  height: 83.6px;
+  margin-top: 13px;
+}
+
+.tipClothing {
+  height: 74px;
+  margin-top: 14px;
+}
+
+.tipHydration {
+  height: 46px;
+  margin-top: 6px;
+}
+
+.tipMoreInfo {
+  height: 63px;
+  margin-top: 14px;
+}
+
+.link {
+  text-decoration-line: underline;
+}

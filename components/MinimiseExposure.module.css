@@ -1,0 +1,102 @@
+/* "minimise-exposure": hvor meget skygge, solcreme og tøj mindsker UV-strålingen */
+.card {
+  width: 360px;
+  height: 413px;
+  margin: 26px 0 0 21px;
+  padding: 40px 20px;
+}
+
+.intro {
+  height: 111px;
+}
+
+.introText {
+  margin-top: 13px;
+  font-size: 14px;
+  line-height: 19.2px;
+}
+
+.reductionList {
+  display: flex;
+  margin-top: 14px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Én række med ikon og tekst. Afstanden mellem ikon og tekst afhænger af ikonets bredde. */
+.reduction {
+  display: flex;
+  height: 43px;
+  align-items: center;
+}
+
+.reductionShade {
+  gap: 9px;
+}
+
+.reductionSunscreen {
+  gap: 14px;
+}
+
+.reductionClothing {
+  gap: 6px;
+}
+
+.reductionIcon {
+  flex-shrink: 0;
+}
+
+.reductionText {
+  width: 278px;
+  height: 43px;
+  font-size: 12px;
+  line-height: 19.2px;
+}
+
+/* ---- Ikonerne. Tegningerne går en smule ud over deres boks, som i Figma. ---- */
+
+.shadeIcon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 29px;
+}
+
+.shadeArt {
+  position: absolute;
+  inset: -2.49% -3.27% -2.48% -3.27%;
+}
+
+.sunscreenIcon {
+  position: relative;
+  display: block;
+  width: 16.32px;
+  height: 30.864px;
+}
+
+.sunscreenArt {
+  position: absolute;
+  inset: -2.87% -5.51% -2.92% -5.51%;
+}
+
+.clothingIcon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 35px;
+}
+
+.clothingHat {
+  position: absolute;
+  inset: 0 0 56.62% 0;
+}
+
+.clothingShirt {
+  position: absolute;
+  inset: 41.18% 14.29% 0 14.29%;
+}
+
+.clothingShirtArt {
+  position: absolute;
+  inset: -5.83% -7%;
+}

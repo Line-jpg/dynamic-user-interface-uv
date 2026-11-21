@@ -1,0 +1,65 @@
+/* "Skru ned for solen"-logoet (150 × 150 px) */
+.logo {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+/* Smileyen med solhat i midten */
+.sunHat {
+  position: absolute;
+  top: 53.91px;
+  left: 43.5px;
+  width: 63px;
+  height: 42.188px;
+}
+
+/* Teksten og prikkerne rundt om, som drejer én omgang ved hover/fokus */
+.orbit {
+  position: absolute;
+  inset: 0;
+  display: block;
+  cursor: pointer;
+  transition-property: transform, translate, scale, rotate;
+  transition-duration: 700ms;
+  transition-timing-function: var(--ease-standard);
+}
+
+@media (hover: hover) {
+  .orbit:hover {
+    rotate: 360deg;
+  }
+}
+
+.orbit:focus-visible {
+  rotate: 360deg;
+}
+
+/* Boksen for ét bogstav (placering og størrelse sættes pr. bogstav) */
+.letterBox {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  translate: 0 -50%;
+}
+
+.letter {
+  display: block;
+  font-size: 16.2px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #000;
+}
+
+/* De to runde prikker */
+.dot {
+  position: absolute;
+  width: 11.055px;
+  height: 11.055px;
+}
+
+.dotArt {
+  position: absolute;
+  inset: -20.35%;
+}

@@ -1,4 +1,7 @@
-/* Styling fra Figma-urets index.css. Ingen baggrund: clock-box-panelet ses igennem. */
+/*
+ * Det interaktive 24-timers ur (styling fra Figma-urets index.css).
+ * Ingen baggrund: forsidens panel ses igennem.
+ */
 
 .clock {
   position: relative;
@@ -7,7 +10,7 @@
   background: transparent;
 }
 
-.face {
+.clockFace {
   display: block;
   width: 100%;
   height: 100%;
@@ -21,33 +24,33 @@
   stroke-linecap: round;
 }
 
-.numbers,
-.data {
+.hourNumbers,
+.uvInfo {
   fill: #ffffff;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-sans);
   font-style: normal;
   font-weight: 400;
 }
 
-.numbers {
+.hourNumbers {
   font-size: 24px;
 }
 
-.data rect {
+.uvInfo rect {
   fill: transparent;
   stroke: #ffffff;
   stroke-width: 1.215px;
 }
 
-.small {
+.infoLabel {
   font-size: 9.72px;
 }
 
-.value {
+.uvValue {
   font-size: 77.76px;
 }
 
-.handle {
+.timeHandle {
   fill: #181818;
   stroke: #ffffff;
   stroke-width: 1.8px;
@@ -59,24 +62,24 @@
   outline: none;
 }
 
-.handle:hover,
-.handle:focus-visible {
+.timeHandle:hover,
+.timeHandle:focus-visible {
   fill: #292929;
   stroke-width: 2.5px;
 }
 
-.handle:focus-visible {
+.timeHandle:focus-visible {
   filter: drop-shadow(0 0 5px rgb(255 255 255 / 65%));
 }
 
-.handleDragging {
+.timeHandleDragging {
   r: 11px;
   cursor: grabbing;
   fill: #242424;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .handle {
+  .timeHandle {
     transition: none;
   }
 }

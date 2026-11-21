@@ -1,0 +1,110 @@
+/* Dækker hele telefonen; klik udenfor popuppen lukker den */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "skin-types": den grå popup med de fire hudtyper */
+.dialog {
+  position: relative;
+  display: flex;
+  width: 359.111px;
+  height: 643.778px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12.222px;
+  padding: 22.222px;
+  border: 3.333px solid var(--color-white);
+  border-radius: 22.222px;
+  background: rgba(74, 74, 74, 0.7);
+}
+
+/* Krydset i øverste højre hjørne */
+.closeButton {
+  position: absolute;
+  top: 18.89px;
+  left: 314.44px;
+  width: 13.333px;
+  height: 13.333px;
+  cursor: pointer;
+}
+
+.closeIcon {
+  position: absolute;
+  inset: -6.25%;
+}
+
+/* Én hudtype. De to første er 125 px høje i Figma, de to sidste 153 px. */
+.skinType {
+  position: relative;
+  width: 308px;
+  flex-shrink: 0;
+}
+
+.skinTypeShort {
+  height: 125px;
+}
+
+.skinTypeTall {
+  height: 153px;
+}
+
+.skinTypeHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 158.889px;
+  height: 44.444px;
+}
+
+.skinTypeLabel {
+  position: absolute;
+  top: 11.67px;
+  left: 0;
+  width: 94.444px;
+  height: 21.111px;
+  font-size: 17.778px;
+  font-weight: 700;
+  line-height: 21.333px;
+  color: var(--color-white);
+}
+
+/* Den runde knap med hudtypens tal (farven sættes pr. hudtype). Vælger hudtypen. */
+.skinTypeButton {
+  position: absolute;
+  top: 0;
+  left: 111.11px;
+  display: flex;
+  width: 47.778px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 11.111px;
+  border: 1.111px solid #000;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 17.778px;
+  font-weight: 700;
+  line-height: 21.333px;
+  color: #101010;
+}
+
+/* Markerer den hudtype, der er valgt nu */
+.skinTypeButtonSelected {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.skinTypeDescription {
+  position: absolute;
+  top: 56.67px;
+  left: 0;
+  width: 308.889px;
+  font-size: 15.556px;
+  line-height: 21.333px;
+  color: var(--color-white);
+}

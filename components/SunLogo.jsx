@@ -1,4 +1,5 @@
 import Svg from "./Svg";
+import styles from "./SunLogo.module.css";
 
 // Bogstaverne i "SKRU NED / FOR SOLEN" placeret langs cirklen som i Figma.
 // [bogstav, left, top (centrum), boksbredde, bokshøjde, rotation]
@@ -31,24 +32,24 @@ const dots = [
 /** "Skru ned for solen"-logoet. Teksten og prikkerne roterer, når man holder musen over. */
 export default function SunLogo({ className = "" }) {
   return (
-    <div className={`relative size-[150px] ${className}`}>
-      <div className="absolute left-[43.5px] top-[53.91px] h-[42.188px] w-[63px]">
+    <div className={`${styles.logo} ${className}`}>
+      <div className={styles.sunHat}>
         <Svg name="logo-solhat" />
       </div>
       <button
         type="button"
         aria-label="Skru ned for solen"
-        className="absolute inset-0 block cursor-pointer transition-transform duration-700 ease-in-out hover:rotate-[360deg] focus-visible:rotate-[360deg]"
+        className={styles.orbit}
       >
         {letters.map(([char, left, top, w, h, rotate], i) => (
           <span
             key={i}
             aria-hidden
-            className="absolute flex -translate-y-1/2 items-center justify-center"
+            className={styles.letterBox}
             style={{ left, top, width: w, height: h }}
           >
             <span
-              className="block text-[16.2px] font-bold leading-normal text-black"
+              className={styles.letter}
               style={{ transform: `rotate(${rotate}deg)` }}
             >
               {char}
@@ -56,9 +57,9 @@ export default function SunLogo({ className = "" }) {
           </span>
         ))}
         {dots.map(([name, left, top]) => (
-          <span key={name} aria-hidden className="absolute size-[11.055px]" style={{ left, top }}>
-            <span className="absolute inset-[-20.35%]">
-              <Svg name={name} className="block size-full max-w-none" />
+          <span key={name} aria-hidden className={styles.dot} style={{ left, top }}>
+            <span className={styles.dotArt}>
+              <Svg name={name} layout="block" />
             </span>
           </span>
         ))}

@@ -1,0 +1,18 @@
+/* "about-the-app": kortet med tekst om appen */
+.card {
+  width: 358px;
+  height: 365px;
+  padding: 40px 20px;
+}
+
+.text {
+  width: 315px;
+  margin-top: 13px;
+  font-size: 14px;
+  line-height: 19.2px;
+}
+
+/* En tom linje (19,2 px) mellem afsnittene */
+.text > * + * {
+  margin-top: 19.2px;
+}

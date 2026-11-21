@@ -1,0 +1,21 @@
+/* Sidetitlen øverst på undersiderne. Slutter 119,4 px fra toppen. */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 90px 22px 0;
+}
+
+.title {
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26.4px;
+  color: var(--color-text-primary);
+}
+
+.titleUnderline {
+  width: 34px;
+  height: 3px;
+  background: var(--color-text-primary);
+}

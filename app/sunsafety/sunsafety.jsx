@@ -5,6 +5,7 @@ import Screen from "@/components/Screen";
 import SkinTypeSection from "@/components/SkinTypeSection";
 import SunLogo from "@/components/SunLogo";
 import UvConditions from "@/components/UvConditions";
+import styles from "./sunsafety.module.css";
 
 /** Solsikkerhed ("sun-safety" i Figma, 402 × 2164 px). */
 export default function SunSafety() {
@@ -16,7 +17,7 @@ export default function SunSafety() {
         <MinimiseExposure />
         <UvConditions />
         {/* Hover orbit / Preview */}
-        <SunLogo className="mx-auto mt-[32.94px]" />
+        <SunLogo className={styles.sunLogo} />
       </Screen>
 
       <Navbar />

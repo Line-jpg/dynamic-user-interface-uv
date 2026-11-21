@@ -45,15 +45,15 @@ export default function ReactiveGradient({ fallback = 3 }) {
   const colors = colorsFor(uv ?? fallback);
 
   return (
-    <div className={styles.root} aria-hidden="true">
+    <div className={styles.gradientBackground} aria-hidden="true">
       {colors.map((color, k) => (
         <div
           key={k}
-          className={styles.blob}
+          className={styles.colorBlob}
           style={{ backgroundColor: color, animationDuration: `${Math.round(SPEED * SPEED_FACTORS[k])}s` }}
         />
       ))}
-      <svg className={styles.grain} style={{ opacity: GRAIN }}>
+      <svg className={styles.grainOverlay} style={{ opacity: GRAIN }}>
         <filter id={noiseId}>
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
         </filter>

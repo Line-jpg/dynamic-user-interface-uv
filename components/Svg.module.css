@@ -1,0 +1,17 @@
+/* Billedet lægger sig oven på og fylder sin (positionerede) forælder */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+/* Billedet fylder sin forælder i det normale flow */
+.block {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}

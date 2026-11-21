@@ -1,0 +1,37 @@
+/* "Info om risiko" (174 × 174 px) */
+.box {
+  display: flex;
+  width: 174px;
+  height: 174px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  padding: 33px 24px;
+}
+
+/* Rådet, fx "Søg skygge midt på dagen og brug solcreme" */
+.advice {
+  width: 100%;
+  height: 51px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-white);
+}
+
+/* Det lyse mærke med risikoniveauet, fx "Moderat Risiko" */
+.riskBadge {
+  display: flex;
+  width: 100%;
+  height: 33px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--color-paper);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}

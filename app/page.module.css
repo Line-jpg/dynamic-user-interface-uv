@@ -1,0 +1,32 @@
+/* Forsiden ("front-page" i Figma) */
+
+.content {
+  padding: 0 20px;
+  color: var(--color-text-primary);
+}
+
+.title {
+  width: 299px;
+  height: 37px;
+  margin: 67px 0 0 -1px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.intro {
+  width: 253px;
+  height: 38px;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.weekForecast {
+  margin-top: 18.94px;
+}
+
+.sunLogo {
+  margin: 77.75px 0 0 127px;
+}
