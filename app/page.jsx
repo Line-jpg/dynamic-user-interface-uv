@@ -1,20 +1,10 @@
-import Clock from "@/components/Clock";
-import HighestUvBox from "@/components/HighestUvBox";
 import Navbar from "@/components/Navbar";
-import RiskInformationBox from "@/components/RiskInformationBox";
 import Screen from "@/components/Screen";
 import SunLogo from "@/components/SunLogo";
+import TodayUv from "@/components/TodayUv";
 import WeekForecast from "@/components/WeekForecast";
 
-// Eksempeldata fra designet. Udskift med data fra jeres UV-API.
-const today = {
-  uv: 5,
-  level: "HØJ",
-  peakTime: "13:34",
-  risk: "Moderat Risiko",
-  advice: "Søg skygge midt på dagen og brug solcreme",
-};
-
+// Eksempeldata til ugegrafen. Udskift med data fra jeres UV-API.
 const week = [
   { day: "MAN", dayName: "Mandag", date: 12, uv: 2 },
   { day: "TIR", dayName: "Tirsdag", date: 13, uv: 4 },
@@ -36,21 +26,16 @@ export default function Forside() {
             UV Index i dag
           </h1>
           {/* front-page-information */}
-          <p className="mt-4 h-[38px] w-[253px] text-base leading-normal">Sådan kommer din dag i solen, til at se ud.</p>
+          <p className="mt-4 h-[38px] w-[253px] text-base leading-normal">
+            Sådan kommer din dag i solen, til at se ud.
+          </p>
 
-          {/* clock-box med det interaktive ur centreret */}
-          <div className="mt-6 flex h-[399px] items-center justify-center rounded-[24px] bg-glass">
-            <Clock />
-          </div>
-
-          <div className="mt-5 flex items-start gap-[14px]">
-            <HighestUvBox uv={today.uv} level={today.level} peakTime={today.peakTime} />
-            <RiskInformationBox advice={today.advice} risk={today.risk} className="mt-px" />
-          </div>
+          {/* clock-box + "Højeste UV i dag" + "Info om risiko", alle med data fra OpenUV */}
+          <TodayUv />
 
           {/* week-uv-graphic */}
           <div className="mt-[18.94px]">
-            <WeekForecast city="Aarhus" days={week} todayIndex={0} />
+            <WeekForecast city="Cairo" days={week} todayIndex={0} />
           </div>
         </div>
 

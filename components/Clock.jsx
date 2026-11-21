@@ -6,7 +6,7 @@ import styles from "./Clock.module.css";
 
 // Interaktivt 24-timers ur fra Figma ("Loop Clock Every 24 Hours").
 // Træk håndtaget rundt for at vælge et tidspunkt. To omgange = et døgn.
-// Midten viser UV-indekset fra OpenUV (via /api/uv) på det valgte tidspunkt.
+// Midten viser UV-indekset på det valgte tidspunkt. Data hentes af forælderen (TodayUv) og gives som props.
 
 const VIEW_WIDTH = 349;
 const VIEW_HEIGHT = 369;
@@ -48,18 +48,6 @@ function angleFromMinutes(minutes) {
   return (minutes / MINUTES_PER_DAY) * FULL_DAY_ANGLE;
 }
 
-/** Klokkeslættet lige nu i dansk tid, som minutter efter midnat. */
-function nowInDenmarkMinutes() {
-  const parts = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Europe/Copenhagen",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23",
-  }).formatToParts(new Date());
-  const get = (type) => Number(parts.find((p) => p.type === type).value);
-  return get("hour") * 60 + get("minute");
-}
-
 function formatTime(angle) {
   const totalMinutes = minutesFromAngle(angle);
   const hours = Math.floor(totalMinutes / 60);
@@ -68,44 +56,23 @@ function formatTime(angle) {
   return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 }
 
-export default function Clock() {
+export default function Clock({ uvData = null, uvError = null, initialMinutes = 0, onMinutesChange }) {
   const svgRef = useRef(null);
   const frameRef = useRef(null);
   const strengthRef = useRef(0);
   const targetStrengthRef = useRef(0);
-  const totalAngleRef = useRef(0);
+  const totalAngleRef = useRef(angleFromMinutes(initialMinutes));
   const previousPointerAngleRef = useRef(null);
-  const [angle, setAngle] = useState(0);
+  const [angle, setAngle] = useState(() => angleFromMinutes(initialMinutes));
   const [isDragging, setIsDragging] = useState(false);
   const [waveStrength, setWaveStrength] = useState(0);
-  const [waveOrigin, setWaveOrigin] = useState(() => pointOnCircle(0, HANDLE_RADIUS));
-  const [uvData, setUvData] = useState(null);
-  const [uvError, setUvError] = useState(null);
-
-  // Hent dagens UV-prognose fra vores egen API-route og stil uret på klokken lige nu.
+  const [waveOrigin, setWaveOrigin] = useState(() =>
+    pointOnCircle(angleFromMinutes(initialMinutes) % (Math.PI * 2), HANDLE_RADIUS),
+  );
+  // Fortæl forælderen, hvilket tidspunkt uret står på, så "Info om risiko" kan følge med.
   useEffect(() => {
-    let cancelled = false;
-    fetch("/api/uv")
-      .then(async (res) => {
-        const body = await res.json();
-        if (!res.ok) throw new Error(body.error ?? "Kunne ikke hente UV-data.");
-        return body;
-      })
-      .then((data) => {
-        if (cancelled) return;
-        setUvData(data);
-        const now = angleFromMinutes(nowInDenmarkMinutes());
-        totalAngleRef.current = now;
-        setAngle(now);
-        setWaveOrigin(pointOnCircle(now % (Math.PI * 2), HANDLE_RADIUS));
-      })
-      .catch((error) => {
-        if (!cancelled) setUvError(error.message);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+    onMinutesChange?.(minutesFromAngle(angle));
+  }, [angle, onMinutesChange]);
 
   const uv = uvData ? uvAtMinutes(uvData.points, minutesFromAngle(angle)) : null;
   // WHO's skala bruger det afrundede UV-indeks, så tal og risikotekst altid passer sammen.
