@@ -1,0 +1,191 @@
+/* "Ugens højeste UV": det lyse kort med søjlediagrammet (362 × 460 px) */
+.weekCard {
+  position: relative;
+  height: 460px;
+  border-radius: 24px;
+  background: var(--color-paper);
+  color: var(--color-text-primary);
+}
+
+/* ---- Overskrift ---- */
+
+.heading {
+  position: absolute;
+  top: 22.84px;
+  right: 15.65px;
+  left: 9.3px;
+  height: 62.589px;
+}
+
+.subtitle {
+  position: absolute;
+  top: 14.38px;
+  left: 0;
+  font-size: 9.05px;
+  line-height: 1.5;
+  opacity: 0.63;
+}
+
+.cityTitle {
+  position: absolute;
+  top: 32.14px;
+  left: 0;
+  font-size: 24.951px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Cirklen med ugens gennemsnit */
+.averageBadge {
+  position: absolute;
+  top: 0;
+  left: 246.13px;
+  width: 60.898px;
+  height: 60.898px;
+}
+
+.averageLabel,
+.averageValue {
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.averageLabel {
+  top: 10.15px;
+  font-size: 7.612px;
+  opacity: 0.7;
+}
+
+.averageValue {
+  top: 24.53px;
+  font-size: 19.453px;
+}
+
+/* ---- Det indre kort med søjlerne ---- */
+
+.chartCard {
+  position: absolute;
+  top: 112.79px;
+  right: 12.26px;
+  left: 12.69px;
+  height: 328.171px;
+  overflow: clip;
+  border: 0.846px solid var(--color-border-subtle);
+  border-radius: 33.832px;
+  background: var(--color-surface-card);
+}
+
+/* Listen af dage skal ikke selv tage plads; hver dag placeres absolut */
+.dayList {
+  display: contents;
+}
+
+/* Én dags kolonne (vandret placering sættes pr. dag) */
+.dayColumn {
+  position: absolute;
+  top: 0;
+  width: 32.14px;
+  height: 100%;
+  translate: -50% 0;
+}
+
+.dayName,
+.dayDate,
+.dayValue {
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.dayName {
+  top: 21.44px;
+  font-size: 9.05px;
+}
+
+.dayDate {
+  top: 34.98px;
+  font-size: 9.304px;
+  opacity: 0.55;
+}
+
+.dayValue {
+  top: 191.57px;
+  font-size: 12.687px;
+  opacity: 0.72;
+}
+
+/* Streg under dagsnavnet for i dag */
+.todayUnderline {
+  position: absolute;
+  top: 33.71px;
+  left: 50%;
+  width: 21.991px;
+  height: 0.846px;
+  translate: -50% 0;
+  background: var(--color-text-primary);
+}
+
+/* Den lyse "skinne" bag søjlen og selve søjlen (højde sættes pr. dag) */
+.barTrack,
+.bar {
+  position: absolute;
+  left: 50%;
+  width: 17.762px;
+  translate: -50% 0;
+  border-radius: 8.881px;
+}
+
+.barTrack {
+  top: 53.28px;
+  background: var(--color-paper);
+  opacity: 0.85;
+}
+
+/* Søjlens farve efter UV-niveau */
+.barUv2 { background: var(--color-chart-2); }
+.barUv3 { background: var(--color-chart-3); }
+.barUv4 { background: var(--color-chart-4); }
+.barUv5 { background: var(--color-chart-5); }
+.barUv6 { background: var(--color-chart-6); }
+.barUv7 { background: var(--color-chart-7); }
+
+/* ---- Råd om solbeskyttelse nederst i kortet ---- */
+
+.adviceDivider {
+  position: absolute;
+  top: 246.55px;
+  left: -0.85px;
+  width: 307px;
+  height: 0.846px;
+  background: var(--color-border-subtle);
+}
+
+.sunBadge {
+  position: absolute;
+  top: 268.8px;
+  left: 20.72px;
+  width: 37.215px;
+  height: 37.215px;
+}
+
+.sunIcon {
+  position: absolute;
+  top: 278.95px;
+  left: 30.87px;
+  width: 16.916px;
+  height: 16.916px;
+}
+
+.adviceText {
+  position: absolute;
+  top: 272.6px;
+  left: 71.89px;
+  width: 223.292px;
+  font-size: 10.319px;
+  line-height: 1.5;
+}

@@ -4,7 +4,7 @@
  * så de passer til telefonrammen (402 × 874 px, 1 vmin = 4,02 px) i stedet for hele browservinduet.
  */
 
-.root {
+.gradientBackground {
   position: fixed; /* fast i telefonrammen, mens indholdet scroller */
   inset: 0;
   overflow: hidden;
@@ -13,7 +13,7 @@
   pointer-events: none;
 }
 
-.blob {
+.colorBlob {
   position: absolute;
   border-radius: 50%;
   filter: blur(72px);
@@ -24,7 +24,7 @@
   transition: background-color 1.6s ease;
 }
 
-.blob:nth-child(1) {
+.colorBlob:nth-child(1) {
   width: 442px;
   height: 442px;
   left: -121px;
@@ -33,7 +33,7 @@
   animation-name: driftA;
 }
 
-.blob:nth-child(2) {
+.colorBlob:nth-child(2) {
   width: 402px;
   height: 402px;
   right: -145px;
@@ -42,7 +42,7 @@
   animation-name: driftB;
 }
 
-.blob:nth-child(3) {
+.colorBlob:nth-child(3) {
   width: 482px;
   height: 482px;
   left: -80px;
@@ -51,7 +51,7 @@
   animation-name: driftC;
 }
 
-.blob:nth-child(4) {
+.colorBlob:nth-child(4) {
   width: 314px;
   height: 314px;
   right: -60px;
@@ -60,7 +60,7 @@
   animation-name: driftD;
 }
 
-.grain {
+.grainOverlay {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -94,7 +94,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob {
+  .colorBlob {
     animation: none !important;
     transition: none !important;
   }

@@ -6,6 +6,8 @@ import { formatMinutes, nowInMinutes, uvAdvice, uvAtMinutes, uvLevel } from "@/l
 import Clock from "./Clock";
 import HighestUvBox from "./HighestUvBox";
 import RiskInformationBox from "./RiskInformationBox";
+import shared from "@/styles/shared.module.css";
+import styles from "./TodayUv.module.css";
 
 /**
  * Henter dagens UV-prognose fra /api/uv én gang og deler den mellem uret og de to kasser under det.
@@ -55,7 +57,7 @@ export default function TodayUv() {
   return (
     <>
       {/* clock-box med det interaktive ur centreret */}
-      <div className="mt-6 flex h-[399px] items-center justify-center rounded-[24px] bg-glass">
+      <div className={`${shared.glassPanel} ${styles.clockPanel}`}>
         {/* Uret startes forfra på klokken "nu", når data er hentet */}
         <Clock
           key={uvData ? "loaded" : "loading"}
@@ -66,7 +68,7 @@ export default function TodayUv() {
         />
       </div>
 
-      <div className="mt-5 flex items-start gap-[14px]">
+      <div className={styles.infoBoxes}>
         <HighestUvBox
           uv={maxUv ?? "–"}
           level={maxUv === null ? "" : uvLevel(maxUv).toUpperCase()}
@@ -75,7 +77,7 @@ export default function TodayUv() {
         <RiskInformationBox
           advice={selectedLevel ? uvAdvice(selectedLevel) : placeholder}
           risk={selectedLevel ? `${selectedLevel} Risiko` : placeholder}
-          className="mt-px"
+          className={styles.riskBox}
         />
       </div>
     </>

@@ -1,0 +1,29 @@
+/* Styles, der deles af flere komponenter. */
+
+/* Glas-kort med hvid kant (Om appen, Personlige tips, Mindsk UV radiation, Indstillinger) */
+.glassCard {
+  border: 3px solid var(--color-white);
+  border-radius: 30px;
+  background: var(--color-glass);
+  color: var(--color-white);
+}
+
+/* Kortenes titel ... */
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26.4px;
+}
+
+/* ... og den korte hvide streg under den */
+.cardTitleUnderline {
+  width: 34px;
+  height: 3px;
+  background: var(--color-white);
+}
+
+/* Mørkt, halvgennemsigtigt panel på forsiden (urets panel og de to små kasser) */
+.glassPanel {
+  border-radius: 24px;
+  background: var(--color-glass);
+}

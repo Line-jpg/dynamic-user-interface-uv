@@ -1,0 +1,21 @@
+/* Panelet med uret ("clock-box" i Figma) */
+.clockPanel {
+  display: flex;
+  height: 399px;
+  margin-top: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Rækken med "Højeste UV i dag" og "Info om risiko" */
+.infoBoxes {
+  display: flex;
+  margin-top: 20px;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* "Info om risiko" sidder 1 px lavere i designet */
+.riskBox {
+  margin-top: 1px;
+}

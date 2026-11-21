@@ -1,0 +1,36 @@
+/* "Component 3" fra Figma: gul kontakt med hvid knap (46 × 23 px) */
+.toggle {
+  position: relative;
+  width: 46px;
+  height: 23px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Den gule skinne: svag, når kontakten er slået fra */
+.track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: var(--color-uv-yellow);
+  opacity: 0.3;
+  transition: opacity 150ms var(--ease-standard);
+}
+
+.trackOn {
+  opacity: 1;
+}
+
+/* Den hvide knap: til venstre når slået fra, til højre når slået til */
+.knob {
+  position: absolute;
+  top: 8.7%;
+  bottom: 8.7%;
+  left: 8.7%;
+  width: 41.3%;
+  transition: left 200ms var(--ease-standard);
+}
+
+.knobOn {
+  left: 50%;
+}

@@ -1,0 +1,68 @@
+/* Navigationen i bunden af telefonen */
+.navigation {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  display: flex;
+  height: var(--navbar-height);
+  align-items: center;
+  justify-content: space-between;
+  overflow: clip;
+  padding: 24px 50px;
+  border-radius: 24px 24px 0 0;
+  background: var(--color-navbar);
+  box-shadow: inset 0 4px 4px 0 rgba(255, 255, 255, 0.25);
+}
+
+.navigationLink {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Standardikon: 24 × 24 px */
+.icon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---- Solhat-ikonet (30 × 16 px) ---- */
+.sunHatIcon {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 16px;
+}
+
+/* Den aktive (udfyldte) solhat er lidt større end sin boks */
+.sunHatActiveArt {
+  position: absolute;
+  inset: 0 -4.12% -8.36% -4.12%;
+}
+
+/* ---- Tandhjulet ---- */
+.settingsIcon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  overflow: clip;
+}
+
+.settingsIconArea {
+  position: absolute;
+  inset: 9.6% 7.12% 8.61% 6.17%;
+}
+
+.settingsArt {
+  position: absolute;
+  inset: -2.08% -3.56% -2.01% -3.56%;
+}
+
+.settingsActiveArt {
+  position: absolute;
+  inset: -2.08% -9.51% -14.64% -9.52%;
+}

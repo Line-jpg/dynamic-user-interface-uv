@@ -5,6 +5,7 @@ import SunLogo from "@/components/SunLogo";
 import TodayUv from "@/components/TodayUv";
 import { UvProvider } from "@/components/UvContext";
 import WeekForecast from "@/components/WeekForecast";
+import styles from "./page.module.css";
 
 // Eksempeldata til ugegrafen. Udskift med data fra jeres UV-API.
 const week = [
@@ -22,14 +23,14 @@ export default function Forside() {
   return (
     <UvProvider>
       {/* Levende baggrund, der skifter farve efter UV på urets tidspunkt */}
-      <Screen minHeight={1599} bg="bg-[#fefefe]" background={<ReactiveGradient />}>
-        <div className="px-5 text-text-primary">
+      <Screen minHeight={1599} tone="white" background={<ReactiveGradient />}>
+        <div className={styles.content}>
           {/* front-page-title */}
-          <h1 className="ml-[-1px] mt-[67px] h-[37px] w-[299px] text-center text-[36px] font-bold leading-normal">
+          <h1 className={styles.title}>
             UV Index i dag
           </h1>
           {/* front-page-information */}
-          <p className="mt-4 h-[38px] w-[253px] text-base leading-normal">
+          <p className={styles.intro}>
             Sådan kommer din dag i solen, til at se ud.
           </p>
 
@@ -37,13 +38,13 @@ export default function Forside() {
           <TodayUv />
 
           {/* week-uv-graphic */}
-          <div className="mt-[18.94px]">
+          <div className={styles.weekForecast}>
             <WeekForecast city="Cairo" days={week} todayIndex={0} />
           </div>
         </div>
 
         {/* smiley-orbit */}
-        <SunLogo className="ml-[127px] mt-[77.75px]" />
+        <SunLogo className={styles.sunLogo} />
       </Screen>
 
       <Navbar />

@@ -1,4 +1,6 @@
 import Toggle from "./Toggle";
+import shared from "@/styles/shared.module.css";
+import styles from "./SettingsCard.module.css";
 
 /**
  * Kort med en titel og en række indstillinger, hver med en kontakt.
@@ -7,14 +9,14 @@ import Toggle from "./Toggle";
 export default function SettingsCard({ title, settings, height, className = "" }) {
   return (
     <section
-      className={`w-[358px] rounded-[30px] border-3 border-white bg-glass pb-6 pl-4 pr-5 pt-6 ${className}`}
+      className={`${shared.glassCard} ${styles.card} ${className}`}
       style={{ height }}
     >
-      <h2 className="py-[10px] text-base font-bold leading-[19.2px] text-white">{title}</h2>
-      <ul className="-mt-[2px] flex flex-col gap-[7px]">
+      <h2 className={styles.title}>{title}</h2>
+      <ul className={styles.settingList}>
         {settings.map((label) => (
-          <li key={label} className="flex items-center justify-between gap-2">
-            <p className="text-sm leading-[19.2px] text-white">{label}</p>
+          <li key={label} className={styles.setting}>
+            <p className={styles.settingLabel}>{label}</p>
             <Toggle label={label} />
           </li>
         ))}

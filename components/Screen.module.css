@@ -1,0 +1,19 @@
+/* En side i telefonen, med plads til navbaren nederst */
+.screen {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: var(--navbar-height);
+  background: #f5f5f5;
+}
+
+/* Forsiden har en næsten hvid bund */
+.screenWhite {
+  background: #fefefe;
+}
+
+/* Sidens indhold ligger over en eventuel baggrund */
+.content {
+  position: relative;
+  z-index: 1;
+}

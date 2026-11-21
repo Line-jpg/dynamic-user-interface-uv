@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Screen from "@/components/Screen";
 import SettingsCard from "@/components/SettingsCard";
 import SunLogo from "@/components/SunLogo";
+import styles from "./settings.module.css";
 
 /** Indstillinger ("settings" i Figma, 402 × 928 px). */
 export default function Settings() {
@@ -16,7 +17,7 @@ export default function Settings() {
           title="Push Notifikationer"
           settings={["Hvis UV-indeks stiger over 4", "Personlige tips baseret på hudtype"]}
           height={188}
-          className="ml-[22px] mt-[27.54px]"
+          className={styles.pushNotificationsCard}
         />
 
         {/* location-permissions */}
@@ -24,11 +25,11 @@ export default function Settings() {
           title="Lokation"
           settings={["Appen må bruge din live lokation"]}
           height={141}
-          className="ml-[22px] mt-[18px]"
+          className={styles.locationCard}
         />
 
         {/* SunLogo/Default */}
-        <SunLogo className="ml-[124px] mt-[87px]" />
+        <SunLogo className={styles.sunLogo} />
       </Screen>
 
       <Navbar />
