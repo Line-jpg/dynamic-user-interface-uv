@@ -1,7 +1,9 @@
 import Navbar from "@/components/Navbar";
+import ReactiveGradient from "@/components/ReactiveGradient";
 import Screen from "@/components/Screen";
 import SunLogo from "@/components/SunLogo";
 import TodayUv from "@/components/TodayUv";
+import { UvProvider } from "@/components/UvContext";
 import WeekForecast from "@/components/WeekForecast";
 
 // Eksempeldata til ugegrafen. Udskift med data fra jeres UV-API.
@@ -18,8 +20,9 @@ const week = [
 /** Forsiden ("front-page" i Figma, 402 × 1599 px). */
 export default function Forside() {
   return (
-    <>
-      <Screen minHeight={1599} bg="bg-[#fefefe]">
+    <UvProvider>
+      {/* Levende baggrund, der skifter farve efter UV på urets tidspunkt */}
+      <Screen minHeight={1599} bg="bg-[#fefefe]" background={<ReactiveGradient />}>
         <div className="px-5 text-text-primary">
           {/* front-page-title */}
           <h1 className="ml-[-1px] mt-[67px] h-[37px] w-[299px] text-center text-[36px] font-bold leading-normal">
@@ -44,6 +47,6 @@ export default function Forside() {
       </Screen>
 
       <Navbar />
-    </>
+    </UvProvider>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useUv } from "./UvContext";
 import { formatMinutes, nowInMinutes, uvAdvice, uvAtMinutes, uvLevel } from "@/lib/uv";
 import Clock from "./Clock";
 import HighestUvBox from "./HighestUvBox";
@@ -10,6 +11,7 @@ import RiskInformationBox from "./RiskInformationBox";
  * Henter dagens UV-prognose fra /api/uv én gang og deler den mellem uret og de to kasser under det.
  * - "Højeste UV i dag" viser dagens maksimum fra prognosen.
  * - "Info om risiko" følger det tidspunkt, uret står på.
+ * - UV-værdien på urets tidspunkt deles via UvContext, så baggrunden kan skifte farve.
  */
 export default function TodayUv() {
   const [uvData, setUvData] = useState(null);
@@ -38,8 +40,14 @@ export default function TodayUv() {
   // Dagens højeste UV (afrundet, som WHO's skala bruger det)
   const maxUv = uvData ? Math.round(uvData.max.uv) : null;
 
-  // UV på det tidspunkt, uret står på
-  const selectedUv = uvData ? Math.round(uvAtMinutes(uvData.points, selectedMinutes)) : null;
+  // UV på det tidspunkt, uret står på (præcis værdi til baggrunden, afrundet til teksterne)
+  const exactUv = uvData ? uvAtMinutes(uvData.points, selectedMinutes) : null;
+  const selectedUv = exactUv === null ? null : Math.round(exactUv);
+
+  const { setUv } = useUv();
+  useEffect(() => {
+    setUv(exactUv);
+  }, [exactUv, setUv]);
   const selectedLevel = selectedUv === null ? null : uvLevel(selectedUv);
 
   const placeholder = uvError ? "Ingen data" : "Henter…";
