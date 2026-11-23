@@ -77,9 +77,3 @@
   cursor: grabbing;
   fill: #242424;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .timeHandle {
-    transition: none;
-  }
-}

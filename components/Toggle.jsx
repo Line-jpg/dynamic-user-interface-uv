@@ -4,9 +4,20 @@ import { useState } from "react";
 import Svg from "./Svg";
 import styles from "./Toggle.module.css";
 
-/** "Component 3" fra Figma: gul kontakt med hvid knap. Knappen står til venstre, når kontakten er slået fra. */
-export default function Toggle({ label, defaultOn = false }) {
-  const [on, setOn] = useState(defaultOn);
+/**
+ * "Component 3" fra Figma: gul kontakt med hvid knap. Knappen står til venstre, når kontakten er slået fra.
+ * Uden `checked` husker kontakten selv sin tilstand. Med `checked` og `onChange` styres den udefra
+ * (fx af en gemt indstilling).
+ */
+export default function Toggle({ label, defaultOn = false, checked, onChange }) {
+  const [internalOn, setInternalOn] = useState(defaultOn);
+  const isControlled = checked !== undefined;
+  const on = isControlled ? checked : internalOn;
+
+  const toggle = () => {
+    if (isControlled) onChange?.(!on);
+    else setInternalOn(!on);
+  };
 
   return (
     <button
@@ -14,7 +25,7 @@ export default function Toggle({ label, defaultOn = false }) {
       role="switch"
       aria-checked={on}
       aria-label={label}
-      onClick={() => setOn((v) => !v)}
+      onClick={toggle}
       className={styles.toggle}
     >
       <span
