@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useReducedMotion } from "@/lib/reducedMotion";
 import { uvAtMinutes, uvLevel } from "@/lib/uv";
 import styles from "./Clock.module.css";
 
@@ -101,14 +102,16 @@ export default function Clock({ uvData = null, uvError = null, initialMinutes = 
     step();
   }, []);
 
+  // Ved reduceret bevægelse bliver stregerne liggende i stedet for at bølge.
+  const reducedMotion = useReducedMotion();
   const setWaveTarget = useCallback(
     (target) => {
-      targetStrengthRef.current = target;
+      targetStrengthRef.current = reducedMotion ? 0 : target;
       if (frameRef.current === null) {
         frameRef.current = requestAnimationFrame(animateWave);
       }
     },
-    [animateWave],
+    [animateWave, reducedMotion],
   );
 
   useEffect(() => {

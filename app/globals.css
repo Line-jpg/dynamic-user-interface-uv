@@ -87,7 +87,6 @@ ul {
 img,
 svg {
   display: block;
-  vertical-align: middle;
 }
 
 img {
@@ -101,4 +100,16 @@ button {
   color: inherit;
   background-color: transparent;
   border-radius: 0;
+}
+
+/* ---- Reduceret bevægelse ----
+ * Slås til i Indstillinger eller følger styresystemet (se lib/reducedMotion.js).
+ * Alle CSS-animationer og -overgange stoppes, så baggrund, logo, kontakter osv. står stille.
+ * Fjernes attributten eller sættes den til "false", kører alt som normalt igen. */
+:root[data-reduced-motion="true"] *,
+:root[data-reduced-motion="true"] ::before,
+:root[data-reduced-motion="true"] ::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
 }

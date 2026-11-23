@@ -92,10 +92,3 @@
   50% { transform: translate(-22%, -16%) scale(1.1); }
   100% { transform: translate(16%, 12%) scale(0.9); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .colorBlob {
-    animation: none !important;
-    transition: none !important;
-  }
-}

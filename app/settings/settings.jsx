@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PageHeader from "@/components/PageHeader";
+import ReducedMotionSetting from "@/components/ReducedMotionSetting";
 import Screen from "@/components/Screen";
 import SettingsCard from "@/components/SettingsCard";
 import SunLogo from "@/components/SunLogo";
@@ -27,6 +28,9 @@ export default function Settings() {
           height={141}
           className={styles.locationCard}
         />
+
+        {/* Reduced motion: slår animationer fra i hele appen */}
+        <ReducedMotionSetting className={styles.reducedMotionCard} />
 
         {/* SunLogo/Default */}
         <SunLogo className={styles.sunLogo} />
