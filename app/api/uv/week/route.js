@@ -1,5 +1,13 @@
 import { connection } from "next/server";
-import { LOCATION, fetchDayForecast, hasApiKey, missingKeyResponse, todayIn } from "@/lib/openuv";
+import {
+  CDN_CACHE_OK,
+  LOCATION,
+  errorResponse,
+  fetchDayForecast,
+  hasApiKey,
+  missingKeyResponse,
+  todayIn,
+} from "@/lib/openuv";
 
 // Højeste UV pr. dag i den aktuelle uge (mandag–søndag i byens lokaltid), til ugegrafen.
 //
@@ -27,24 +35,20 @@ export async function GET() {
   const today = todayIn(timeZone);
   const dates = weekDates(today);
 
-  // Alle dage hentes samtidig. Hver dag caches for sig (se lib/openuv.js).
-  const results = await Promise.allSettled(
+  // Alle dage hentes samtidig. Hver dag caches for sig, også fejl (se lib/openuv.js).
+  const results = await Promise.all(
     dates.map((date) => fetchDayForecast(lat, lng, timeZone, date, date === today)),
   );
 
   const days = dates.map((date, i) => {
-    const result = results[i];
-    if (result.status === "rejected") {
-      console.error(`UV for ${date} kunne ikke hentes:`, result.reason);
-      return { date, uv: null };
-    }
-    const points = result.value;
-    return { date, uv: points.length ? Math.max(...points.map((p) => p.uv)) : null };
+    const { points, error } = results[i];
+    if (error || !points.length) return { date, uv: null };
+    return { date, uv: Math.max(...points.map((p) => p.uv)) };
   });
 
   if (days.every((d) => d.uv === null)) {
-    return Response.json({ error: "Kunne ikke hente ugens UV-data fra OpenUV." }, { status: 502 });
+    return errorResponse("Kunne ikke hente ugens UV-data fra OpenUV.", results.find((r) => r.error)?.error);
   }
 
-  return Response.json({ location: name, timeZone, today, days });
+  return Response.json({ location: name, timeZone, today, days }, { headers: CDN_CACHE_OK });
 }
