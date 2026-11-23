@@ -19,10 +19,17 @@ function barColor(uv) {
   return styles.barUv7;
 }
 
-/** "Ugens højeste UV · Mobil": søjlediagram over ugens højeste UV pr. dag. */
-export default function WeekForecast({ city, days, todayIndex = 0 }) {
-  const average = days.reduce((sum, d) => sum + d.uv, 0) / days.length;
-  const peak = days.reduce((best, d) => (d.uv > best.uv ? d : best), days[0]);
+/**
+ * "Ugens højeste UV · Mobil": søjlediagram over ugens højeste UV pr. dag.
+ * En dag med uv: null (ingen data) vises uden søjle og med "–".
+ * `status` er "ready", "loading" eller "error" og styrer teksten nederst, når der ikke er data.
+ */
+export default function WeekForecast({ city, days, todayIndex = -1, status = "ready" }) {
+  const daysWithData = days.filter((d) => d.uv !== null);
+  const average = daysWithData.length
+    ? daysWithData.reduce((sum, d) => sum + d.uv, 0) / daysWithData.length
+    : null;
+  const peak = daysWithData.reduce((best, d) => (best === null || d.uv > best.uv ? d : best), null);
   return (
     <section
       aria-label={`Ugens højeste UV i ${city}`}
@@ -38,7 +45,9 @@ export default function WeekForecast({ city, days, todayIndex = 0 }) {
           <Svg name="average-outline" />
           <p className={styles.averageLabel}>GNS.</p>
           <p className={styles.averageValue}>
-            {average.toLocaleString("da-DK", { maximumFractionDigits: 1, minimumFractionDigits: 1 })}
+            {average === null
+              ? "–"
+              : average.toLocaleString("da-DK", { maximumFractionDigits: 1, minimumFractionDigits: 1 })}
           </p>
         </div>
       </div>
@@ -48,11 +57,13 @@ export default function WeekForecast({ city, days, todayIndex = 0 }) {
         <ol className={styles.dayList}>
           {days.map((d, i) => {
             const center = FIRST_CENTER + COLUMN_PITCH * i;
-            const fill = (Math.min(d.uv, UV_MAX) / UV_MAX) * TRACK_HEIGHT;
+            const hasData = d.uv !== null;
+            const rounded = hasData ? Math.round(d.uv) : null;
+            const fill = hasData ? (Math.min(d.uv, UV_MAX) / UV_MAX) * TRACK_HEIGHT : 0;
             return (
               <li
                 key={d.day}
-                aria-label={`${d.dayName} ${d.date}.: UV ${d.uv}`}
+                aria-label={`${d.dayName}${d.date ? ` ${d.date}.` : ""}: ${hasData ? `UV ${rounded}` : "ingen data"}`}
                 className={styles.dayColumn}
                 style={{ left: center }}
               >
@@ -67,12 +78,14 @@ export default function WeekForecast({ city, days, todayIndex = 0 }) {
                   className={styles.barTrack}
                   style={{ height: TRACK_HEIGHT }}
                 />
-                <span
-                  className={`${styles.bar} ${barColor(d.uv)}`}
-                  style={{ top: 53.28 + TRACK_HEIGHT - fill, height: fill }}
-                />
+                {hasData && (
+                  <span
+                    className={`${styles.bar} ${barColor(rounded)}`}
+                    style={{ top: 53.28 + TRACK_HEIGHT - fill, height: fill }}
+                  />
+                )}
                 <p className={styles.dayValue}>
-                  {d.uv}
+                  {hasData ? rounded : "–"}
                 </p>
               </li>
             );
@@ -90,7 +103,15 @@ export default function WeekForecast({ city, days, todayIndex = 0 }) {
         </div>
         <div className={styles.adviceText}>
           <p>
-            {peak.dayName} får ugens højeste UV: <b>{peak.uv}</b>
+            {peak ? (
+              <>
+                {peak.dayName} får ugens højeste UV: <b>{Math.round(peak.uv)}</b>
+              </>
+            ) : status === "loading" ? (
+              "Henter ugens UV…"
+            ) : (
+              "Ugens UV-data kunne ikke hentes."
+            )}
           </p>
           <p>
             Brug solbeskyttelse, når UV er <b>over 3</b>.
