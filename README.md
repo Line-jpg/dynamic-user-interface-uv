@@ -1,3 +1,11 @@
+Dette er en skoleopgave, hvor opgaven går ud på at lave en eksisterende app mindeværdigt.
+Produktet tager udgangspunkt i Kræftens Bekæmpelses uv-indeks app.
+
+Produktet er udarbejdet af:
+Celina Marie Lunding
+Line Svendsen
+Marie-Luise Kuppe
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
